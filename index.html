@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Style Game - Multiplayer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            background-color: #000;
+        }
+        #game-container {
+            width: 100%;
+            height: 100%;
+        }
+        /* Lobby overlay styles */
+        #lobby-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            font-family: 'Press Start 2P', monospace, Arial;
+            color: white;
+        }
+        #lobby-overlay.hidden {
+            display: none;
+        }
+        #lobby-overlay h1 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px #000;
+        }
+        #lobby-overlay input {
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 3px solid #4a90d9;
+            border-radius: 8px;
+            background: #222;
+            color: white;
+            margin-bottom: 20px;
+            width: 280px;
+            text-align: center;
+        }
+        #lobby-overlay button {
+            padding: 15px 40px;
+            font-size: 16px;
+            background: #4a90d9;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #lobby-overlay button:hover {
+            background: #3a7bc8;
+        }
+        #player-count {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <!-- Lobby Overlay -->
+    <div id="lobby-overlay">
+        <h1>Welcome to BRD World</h1>
+        <input type="text" id="player-name" placeholder="Enter your name" maxlength="15">
+        <button id="join-btn">Join Game</button>
+    </div>
+
+    <!-- Player Count Display -->
+    <div id="player-count" style="display: none;">Players: <span id="count">0</span></div>
+
+    <div id="game-container"></div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+    <!-- Phaser 3 -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+
+    <!-- Game Scripts -->
+    <script src="src/MultiplayerManager.js"></script>
+    <script src="src/scenes/BootScene.js"></script>
+    <script src="src/scenes/GameScene.js"></script>
+    <script src="src/main.js"></script>
+</body>
+</html>
